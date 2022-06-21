@@ -1,4 +1,10 @@
-// 对象字符串转化成树形结构方法
+/**
+ * 1.对象字符串转化成树形结构方法 => objToTree
+ * 2.数组合并 => mergeArr
+ * 3.数组去重 => repeatFun
+ * @returns 
+ */
+
 function objToTree() {
     let strarr = {
         'a-b-c-d': 1,
@@ -30,7 +36,6 @@ function objToTree() {
       return objToTree
 }
 
-// 两数组合并为一个数组
 function mergeArr () {
   // 1.concat方法 （concat方法不会改变原始数组，而是返回一个合并以后的新数组），需要进行多次的数组合并时会造成很大的内存浪费，适用于数据量比较小的场景
   var arr1 = [1, 2, 3]
@@ -47,7 +52,6 @@ function mergeArr () {
   arr1.push.apply(arr1, arr2) // arr1 = [1,2,3,4,5,6]
 }
 
-// 数组去重
 function repeatFun() {
   let arr = [1, 3, 6, 1, 2, 1, 6]
 
