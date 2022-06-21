@@ -46,3 +46,61 @@ function mergeArr () {
   // 3.apply(apply方法传递的参数列表是参数数组,会改变原数组)
   arr1.push.apply(arr1, arr2) // arr1 = [1,2,3,4,5,6]
 }
+
+// 数组去重
+function repeatFun() {
+  let arr = [1, 3, 6, 1, 2, 1, 6]
+
+  // 1.for循环 +findIndex,利用findIndex 的特性，查找元素找不到就返回-1， 接下来就需要判断，如果是-1，说明没找到，就往新数组里面添加元素。
+  let newArr = []
+  for(var i=0; i<arr.length; i++) {
+    newArr.indexOf(arr[i]) === -1 ? newArr.push(arr[i]) : newArr
+  }
+  
+  // 2.sort 排序,利用 sort 方法进行排序。进行循环，如果原数组的第 i 项和新数组的i - 1 项不一致，就push进去。
+  arr = arr.sort()
+  for(var i=0; i<arr.length; i++) {
+    arr[i] === arr[i-1] ? newArr : newArr.push(arr[i])
+  }
+
+  // 3.Set,ES6中新增了数据类型Set，Set的一个最大的特点就是数据不重复。Set函数可以接受一个数组（或类数组对象）作为参数来初始化，利用该特性也能做到给数组去重。
+  newArr = [...new Set(arr)]
+
+  // 4.set + Array.from, 利用 set数据不重复的特点，结合 Array.from
+  newArr = Array.from(new Set(arr))
+
+  // 5.filter + indexOf,indexOf，可以检测某一个元素在数组中出现的位置，找到返回该元素的下标，没找到返回 -1
+  newArr = Array.prototype.filter.call(arr,(item, index) => {
+    return arr.indexOf(item) === index
+  })
+  
+  // 6.includes,利用 includes 检查新数组是否包含原数组的每一项。 如果不包含，就push进去
+  for(var i=0; i<arr.length; i++) {
+    newArr.includes(arr[i]) ? newArr : newArr.push(arr[i])
+  }
+
+  // 7.for + object, 利用对象属性名不能重复这一特点。如果对象中不存在，就可以给 push 进去+
+  let map = {}
+  for(var i=0; i<arr.length; i++) {
+    if (!map[arr[i]]) {
+      newArr.push(arr[i])
+      map[arr[i]] = 1
+    } else {
+      map[arr[i]] ++
+    }
+  }
+
+  // 8.Map,利用数据结构存值的特点
+  let newMap = new Map()
+  for(var i=0; i<arr.length; i++) {
+    if (!newMap.has(arr[i])) {
+      newMap.set(arr[i], true)
+      newArr.push(arr[i])
+    }
+  }
+
+  // 9.reduce
+  newArr = arr.reduce((_pre, item, _index, _arr) => {
+    return newArr.includes(item) ? newArr :  newArr.push(item)
+  }, [])
+}
