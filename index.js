@@ -2,6 +2,7 @@
  * 1.对象字符串转化成树形结构方法 => objToTree
  * 2.数组合并 => mergeArr
  * 3.数组去重 => repeatFun
+ * 4.0-100求和 => sumFun
  * @returns 
  */
 
@@ -107,4 +108,16 @@ function repeatFun() {
   newArr = arr.reduce((_pre, item, _index, _arr) => {
     return newArr.includes(item) ? newArr :  newArr.push(item)
   }, [])
+}
+
+function sumFun() {
+  let sum=0; num=0;
+
+  const fun = (a) => {
+    sum += num
+    if (num < a) {
+      num ++
+    }
+  }
+  fun(100)
 }
