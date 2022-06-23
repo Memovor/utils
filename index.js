@@ -3,6 +3,7 @@
  * 2.数组合并 => mergeArr
  * 3.数组去重 => repeatFun
  * 4.0-100求和 => sumFun
+ * 5.求一个数组的平均值 => averageFun
  * @returns 
  */
 
@@ -120,4 +121,11 @@ function sumFun() {
     }
   }
   fun(100)
+}
+
+function averageFun() {
+  const arr = [10, 9, 8, 7, 6 ,5, 4, 3, 2, 1]
+  return arr.reduce((pre, cur) => {
+    return pre + cur
+  }) / arr.length
 }
