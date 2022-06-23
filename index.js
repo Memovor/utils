@@ -4,6 +4,7 @@
  * 3.数组去重 => repeatFun
  * 4.0-100求和 => sumFun
  * 5.求一个数组的平均值 => averageFun
+ * 6.数组排序 => sortArrFun
  * @returns 
  */
 
@@ -128,4 +129,11 @@ function averageFun() {
   return arr.reduce((pre, cur) => {
     return pre + cur
   }) / arr.length
+}
+
+function sortArrFun() {
+  const arr = [10, 20, 4, 18, 90, 19, 36, 199]
+  return arr.sort((a,b) => {
+    return a-b
+  })
 }
